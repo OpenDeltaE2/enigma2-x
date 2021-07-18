@@ -4,6 +4,7 @@ from SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import os
 
+
 class AVSwitch:
 	def setInput(self, input):
 		INPUT = {"ENCODER": 0, "SCART": 1, "AUX": 2}
@@ -165,7 +166,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/ac3", "w")
 			f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
-		config.av.downmix_ac3 = ConfigYesNo(default = True)
+		config.av.downmix_ac3 = ConfigYesNo(default=True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
 	if SystemInfo["CanDownmixDTS"]:
@@ -173,7 +174,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/dts", "w")
 			f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
-		config.av.downmix_dts = ConfigYesNo(default = True)
+		config.av.downmix_dts = ConfigYesNo(default=True)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
 	if SystemInfo["CanDownmixAAC"]:
@@ -181,7 +182,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/aac", "w")
 			f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
-		config.av.downmix_aac = ConfigYesNo(default = True)
+		config.av.downmix_aac = ConfigYesNo(default=True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
 
 	if fileExists("/proc/stb/video/alpha"):
@@ -196,7 +197,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/video/alpha", "w")
 			f.write(str(config.value))
 			f.close()
-		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
+		config.av.osd_alpha = ConfigSlider(default=255, limits=(0, 255))
 		config.av.osd_alpha.addNotifier(setAlpha)
 
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
