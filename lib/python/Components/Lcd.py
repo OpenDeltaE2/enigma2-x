@@ -102,7 +102,7 @@ def InitLcd():
 				f = open(SystemInfo["LedPowerColor"], "w")
 				f.write(configElement.value)
 				f.close()
-			config.lcd.ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+			config.lcd.ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 			config.lcd.ledpowercolor.addNotifier(setLedPowerColor)
 
 		if SystemInfo["LedStandbyColor"]:
@@ -110,7 +110,7 @@ def InitLcd():
 				f = open(SystemInfo["LedStandbyColor"], "w")
 				f.write(configElement.value)
 				f.close()
-			config.lcd.ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+			config.lcd.ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 			config.lcd.ledstandbycolor.addNotifier(setLedStandbyColor)
 
 		if SystemInfo["LedSuspendColor"]:
@@ -118,7 +118,7 @@ def InitLcd():
 				f = open(SystemInfo["LedSuspendColor"], "w")
 				f.write(configElement.value)
 				f.close()
-			config.lcd.ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+			config.lcd.ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 			config.lcd.ledsuspendcolor.addNotifier(setLedSuspendColor)
 
 		if SystemInfo["Power4x7On"]:
