@@ -1877,7 +1877,7 @@ class Config(ConfigSubsection):
 			print "Config: Couldn't write %s" % filename
 
 	def loadFromFile(self, filename, base_file=True):
-		if os_path.isfile(filename):
+		if os.path.isfile(filename):
 			self.unpickle(filename, base_file)
 		else:
 			print "Config File: %s not find" % filename
