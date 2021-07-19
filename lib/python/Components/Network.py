@@ -64,7 +64,7 @@ class Network:
 		return [int(n) for n in ip.split('.')]
 
 	def getAddrInet(self, iface, callback):
-		data = {'up': False, 'dhcp': False, 'preup' : False, 'predown' : False}
+		data = {'up': False, 'dhcp': False, 'preup': False, 'predown': False}
 		if fileExists('/sys/class/net/%s/flags' % iface):
 			try:
 				with open('/sys/class/net/%s/flags' % iface) as fp:
@@ -388,7 +388,7 @@ class Network:
 			if callback is not None:
 				callback(True, mode)
 
-	def checkNetworkState(self,statecallback):
+	def checkNetworkState(self, statecallback):
 		self.NetworkState = 0
 		self.pingConsole = Console()
 		for server in ("www.openpli.org", "www.bing.com", "www.microsoft.com"):
