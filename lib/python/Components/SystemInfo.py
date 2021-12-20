@@ -47,6 +47,7 @@ SystemInfo["ISDREAMBOX"] = getBoxBrand() in ("dreambox",)
 SystemInfo["CanAC3plusTranscode"] = fileExists("/proc/stb/audio/ac3plus_choices")
 SystemInfo["CanWMAPRO"] = fileExists("/proc/stb/audio/wmapro")
 SystemInfo["CanDTSHD"] = fileExists("/proc/stb/audio/dtshd_choices")
+SystemInfo["DreamBoxAudio"] = model in ("dm7080", "dm800", 'dm900', 'dm920', 'dreamone', 'dreamtwo')
 SystemInfo["InDebugMode"] = eGetEnigmaDebugLvl() >= 4
 SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots()
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
