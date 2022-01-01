@@ -112,8 +112,8 @@ def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
 	import cPickle
 	try:
-		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
-		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		with open('/etc/enigma2/resumepoints.pkl', 'wb') as f:
+			cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
 	except Exception, ex:
 		print "[InfoBar] Failed to write resumepoints:", ex
 	resumePointCacheLast = int(time())
@@ -122,7 +122,12 @@ def saveResumePoints():
 def loadResumePoints():
 	import cPickle
 	try:
-		return cPickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
+		if os.path.isfile('/etc/enigma2/resumepoints.pkl'):
+			with open('/etc/enigma2/resumepoints.pkl', 'rb') as f:
+				return cPickle.load(f)
+		else:
+			print "[InfoBar] resumepoints is lost"
+			return {}
 	except Exception, ex:
 		print "[InfoBar] Failed to load resumepoints:", ex
 		return {}
@@ -137,7 +142,11 @@ class whitelist:
 
 
 def reload_whitelist_vbi():
-	whitelist.vbi = [line.strip() for line in open('/etc/enigma2/whitelist_vbi', 'r').readlines()] if os.path.isfile('/etc/enigma2/whitelist_vbi') else []
+	if os.path.isfile('/etc/enigma2/whitelist_vbi'):
+		with open('/etc/enigma2/whitelist_vbi', 'r') as f:
+			whitelist.vbi = [line.strip() for line in f.readlines()]
+	else:
+		whitelist.vbi = []
 
 
 reload_whitelist_vbi()
@@ -153,7 +162,8 @@ def reload_subservice_groupslist(force=False):
 			groupedservices = "/etc/enigma2/groupedservices"
 			if not os.path.isfile(groupedservices):
 				groupedservices = "/usr/share/enigma2/groupedservices"
-			subservice.groupslist = [list(g) for k, g in itertools.groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
+			with open(groupedservices) as fp:
+				subservice.groupslist = [list(g) for k, g in itertools.groupby([line.split('#')[0].strip() for line in fp.readlines()], lambda x:not x) if not k]
 		except:
 			subservice.groupslist = []
 
@@ -464,7 +474,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				whitelist.vbi.remove(service)
 			else:
 				whitelist.vbi.append(service)
-			open('/etc/enigma2/whitelist_vbi', 'w').write('\n'.join(whitelist.vbi))
+			with open('/etc/enigma2/whitelist_vbi', 'w') as f:
+				f.write('\n'.join(whitelist.vbi))
 			self.showHideVBI()
 
 
@@ -2071,7 +2082,8 @@ class InfoBarTimeshift():
 
 	def setLCDsymbolTimeshift(self):
 		if SystemInfo["LCDsymbol_timeshift"]:
-			open(SystemInfo["LCDsymbol_timeshift"], "w").write(self.timeshiftEnabled() and "1" or "0")
+			with open(SystemInfo["LCDsymbol_timeshift"], "w") as fp:
+				fp.write(self.timeshiftEnabled() and "1" or "0")
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
