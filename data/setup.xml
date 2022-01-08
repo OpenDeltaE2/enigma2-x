@@ -233,6 +233,7 @@
 		<item text="Contrast">config.osd.contrast</item>
 	</setup>
 	<setup key="lcd" title="Display setup" requires="FrontpanelDisplay">
+		<item level="0" requires="ISDREAMBOX" text="Front LED blink speed" description="Smaller numbers are faster (this needs an enigma2 restart).">config.usage.frontled_speed</item>
 		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="LcdLiveTV">config.lcd.showTv</item>
 		<item level="0" text="Clone TV screen to LCD mode" description="Selects the mode how live tv should be shown on the LCD." requires="LcdLiveTVMode">config.usage.LcdLiveTVMode</item>
 		<item level="2" text="Live decoder" description="Selects video source displayed on the LCD." requires="LcdLiveDecoder">config.usage.LcdLiveDecoder</item>

@@ -289,6 +289,8 @@ def InitUsageConfig():
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default=False)
 
+	config.usage.frontled_speed = ConfigInteger(default=20, limits=(1, 99))
+
 	config.usage.tt_res = ConfigSelection(default = "TTF_FHD", choices=[("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("EXP_MODE", _("Expert mode"))])
 	config.usage.tuxtxt_UseTTF = ConfigSelection(default="1", choices=[("0", "0"), ("1", "1")])
 	config.usage.tuxtxt_TTFBold = ConfigSelection(default="0", choices=[("0", "0"), ("1", "1")])
