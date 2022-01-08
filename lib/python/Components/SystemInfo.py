@@ -49,7 +49,7 @@ SystemInfo["CanWMAPRO"] = fileExists("/proc/stb/audio/wmapro")
 SystemInfo["CanDTSHD"] = fileExists("/proc/stb/audio/dtshd_choices")
 SystemInfo["DreamBoxAudio"] = model in ("dm7080", "dm800", 'dm900', 'dm920', 'dreamone', 'dreamtwo')
 SystemInfo["InDebugMode"] = eGetEnigmaDebugLvl() >= 4
-SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots()
+SystemInfo["CommonInterface"] = model in ("zgemmah9combo", "pulse4kmini") and 1 or eDVBCIInterfaces.getInstance().getNumOfSlots()
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
 for cislot in range(0, SystemInfo["CommonInterface"]):
 	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot)
