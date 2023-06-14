@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins
 
-SUBDIRS = Extensions SystemPlugins PLi
+SUBDIRS = Extensions SystemPlugins OpenDelta
 
 install_PYTHON =	\
 	__init__.py Plugin.py
