@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/PLi
+installdir = $(pkglibdir)/python/Plugins/Opendelta
 
 install_PYTHON = __init__.py
 
